@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Display</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f90404;
+        }
+        
+        .image-container {
+            margin-bottom: 20px;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .button {
+            margin: 10px;
+            padding: 15px 30px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .button img {
+            margin-right: 10px;
+            width: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="../images/wrong.png" alt="Image">
+    </div>
+    
+    <div class="button-container">
+        <button class="button" onclick="history.back()"><img src="../images/try_again.png" alt="Try Again" width="20px">Try Again</button>
+        <button class="button" id="button1"><img src="../images/next.png" alt="Next Letter" width="20px">Next Letter</button>
+        <button class="button" onclick="window.location.href='../index.html'"><img src="../images/home.png" alt="Go Home" width="20px">Go Home</button>
+    </div>
+    
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+         
+  var pages = [
+    'A.html',
+    'F.html',
+    'P.html',
+    'R.html'
+  ];
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function redirectToRandomPage() {
+    var randomIndex = getRandomInt(0, pages.length - 1);
+    var randomPage = pages[randomIndex];
+    window.location.href = randomPage;
+  } 
+
+  var button1 = document.getElementById("button1");
+
+  button1.addEventListener("click", function() {
+    redirectToRandomPage();
+  });
+    </script>
+</body>
+</html>

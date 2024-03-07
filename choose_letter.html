@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose a Letter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: black;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 100px;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            margin: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .button:nth-child(1) {
+            background-color: red;
+        }
+
+        .button:nth-child(2) {
+            background-color: orange;
+        }
+
+        .button:nth-child(3) {
+            background-color: coral;
+        }
+
+        .button:nth-child(4) {
+            background-color: green;
+        }
+
+        .button:nth-child(5) {
+            background-color: blue;
+        }
+
+        .button:nth-child(6) {
+            background-color: indigo;
+        }
+
+        .button:nth-child(7) {
+            background-color: violet;
+        }
+
+        .button:nth-child(8) {
+            background-color: brown;
+        }
+
+        .button:nth-child(9) {
+            background-color: gray;
+        }
+
+        .button:nth-child(10) {
+            background-color: pink;
+        }
+
+        .button:nth-child(11) {
+            background-color: cyan;
+        }
+
+        .button:nth-child(12) {
+            background-color: magenta;
+        }
+
+        .button:nth-child(13) {
+            background-color: teal;
+        }
+
+        .button:nth-child(14) {
+            background-color: lime;
+        }
+
+        .button:nth-child(15) {
+            background-color: silver;
+        }
+
+        .button:nth-child(16) {
+            background-color: gold;
+        }
+
+        .button:nth-child(17) {
+            background-color: navy;
+        }
+
+        .button:nth-child(18) {
+            background-color: olive;
+        }
+
+        .button:nth-child(19) {
+            background-color: maroon;
+        }
+
+        .button:nth-child(20) {
+            background-color: purple;
+        }
+
+        .button:nth-child(21) {
+            background-color: coral;
+        }
+
+        .button:nth-child(22) {
+            background-color: hotpink;
+        }
+
+        .button:nth-child(23) {
+            background-color: skyblue;
+        }
+
+        .button:nth-child(24) {
+            background-color: tan;
+        }
+
+        .button:nth-child(25) {
+            background-color: orchid;
+        }
+
+        .button:nth-child(26) {
+            background-color: darkgreen;
+        }
+        .title-image {
+            margin-top: 70px;
+            display: block;
+            max-width: 100%;
+        }
+
+        /* Add more styles for other buttons */
+    </style>
+</head>
+<body>
+
+</head>
+<body>
+    <img src="images/title_choose_letter.png" alt="Title" class="title-image">
+    <div class="button-container">
+        
+        <div class="button" onclick="redirectToPage('A')">A</div>
+        <div class="button" onclick="redirectToPage('B')">B</div>
+        <div class="button" onclick="redirectToPage('C')">C</div>
+        <div class="button" onclick="redirectToPage('D')">D</div>
+        <div class="button" onclick="redirectToPage('E')">E</div>
+        <div class="button" onclick="redirectToPage('F')">F</div>
+        <div class="button" onclick="redirectToPage('G')">G</div>
+        <div class="button" onclick="redirectToPage('H')">H</div>
+        <div class="button" onclick="redirectToPage('I')">I</div>
+        <div class="button" onclick="redirectToPage('J')">J</div>
+        <div class="button" onclick="redirectToPage('K')">K</div>
+        <div class="button" onclick="redirectToPage('L')">L</div>
+        <div class="button" onclick="redirectToPage('M')">M</div>
+        <div class="button" onclick="redirectToPage('N')">N</div>
+        <div class="button" onclick="redirectToPage('O')">O</div>
+        <div class="button" onclick="redirectToPage('P')">P</div>
+        <div class="button" onclick="redirectToPage('Q')">Q</div>
+        <div class="button" onclick="redirectToPage('R')">R</div>
+        <div class="button" onclick="redirectToPage('S')">S</div>
+        <div class="button" onclick="redirectToPage('T')">T</div>
+        <div class="button" onclick="redirectToPage('U')">U</div>
+        <div class="button" onclick="redirectToPage('V')">V</div>
+        <div class="button" onclick="redirectToPage('W')">W</div>
+        <div class="button" onclick="redirectToPage('X')">X</div>
+        <div class="button" onclick="redirectToPage('Y')">Y</div>
+        <div class="button" onclick="redirectToPage('Z')">Z</div>
+        
+        <!-- Add more buttons for other letters -->
+    </div>
+
+    <script>
+        function redirectToPage(letter) {
+            window.location.href = `Alphabet/${letter}.html`;
+        }
+    </script>
+</body>
+</html>

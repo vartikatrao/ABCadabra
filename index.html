@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alphabet Learning System</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #031f2f;
+  }
+  .image {
+    margin-top: 100px;
+    max-width: 60%;
+    height: auto;
+  }
+  .button-container {
+    margin-top: 20px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .button {
+    margin: 100px 0px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <img src="images/title.png" alt="Your Image" class="image">
+  <div class="button-container">
+    <div class="button-row">
+      <div class="button">
+        <img src="images/play_random.png" alt="Button 1" id="button1" width="80%">
+      </div>
+      <div class="button">
+        <img src="images/choose_letter.png" alt="Button 2" id="button2" width="75%">
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Array containing file paths of HTML pages
+  var pages = [
+    'Alphabet/A.html',
+    'Alphabet/F.html',
+    'Alphabet/P.html',
+    'Alphabet/R.html'
+    // Add more pages here as needed
+  ];
+
+  // Function to generate a random integer within a range
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // Function to redirect to a random HTML page
+  function redirectToRandomPage() {
+    // Generate a random index within the range of the array length
+    var randomIndex = getRandomInt(0, pages.length - 1);
+    // Retrieve the HTML page path at the random index
+    var randomPage = pages[randomIndex];
+    // Redirect to the random HTML page
+    window.location.href = randomPage;
+  } 
+
+  // Get the image button element
+  var button1 = document.getElementById("button1");
+
+  // Add a click event listener to the button
+  button1.addEventListener("click", function() {
+    // Perform the desired action when the button is clicked
+    redirectToRandomPage(); // Example action, you can replace this with your desired functionality
+  });
+
+  //add a click event listener to the button2 to redirect to the choose_letter.html
+  // Get the image button element
+  var button2 = document.getElementById("button2");
+
+  // Add a click event listener to the button
+  button2.addEventListener("click", function() {
+    // Perform the desired action when the button is clicked
+    window.location.href = "choose_letter.html";
+  });
+  
+</script>
+</body>
+</html>
