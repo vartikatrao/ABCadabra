@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css">
+
     <title>Image Display</title>
     <style>
         body {
@@ -40,20 +42,57 @@
             margin-right: 10px;
             width: 25px;
         }
+        .e {
+        animation: fade 2s infinite; /* Adjust timing as needed */
+        opacity: 0; /* Start with opacity 0 */
+        font-size: 100px;
+    }
+    .emoji {
+        font-size: 40px;
+        margin-top: 0;
+        text-align: center;
+        animation: shakeX 2s infinite; /* Apply Animate.css shakeX animation */
+    }
+
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
     </style>
 </head>
 <body>
     <div class="image-container">
         <img src="../images/wrong.png" alt="Image">
     </div>
-    
+    <div class="emoji">
+        <span class="e">😢</span>
+    </div>
     <div class="button-container">
         <button class="button" onclick="history.back()"><img src="../images/try_again.png" alt="Try Again" width="20px">Try Again</button>
         <button class="button" id="button1"><img src="../images/next.png" alt="Next Letter" width="20px">Next Letter</button>
         <button class="button" onclick="window.location.href='../index.html'"><img src="../images/home.png" alt="Go Home" width="20px">Go Home</button>
     </div>
+    <audio id="yayAudio">
+        <source src="../Audio/boo.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     
     <script>
+
+var audio = document.createElement("AUDIO")
+document.body.appendChild(audio);
+audio.src = "../Audio/boo.mp3"
+
+document.body.addEventListener("mousemove", function () {
+    audio.play()
+})
         function goBack() {
             window.history.back();
         }
@@ -64,7 +103,7 @@
     'P.html',
     'R.html', 
     'J.html',
-    'L.html'
+    'L.html',
   ];
 
   function getRandomInt(min, max) {
