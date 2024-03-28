@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A</title>
+<title>U</title>
 <style>
   
   body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #034100;
+    background-color: black;
     position: relative; /* Add relative position to allow absolute positioning of the sound button */
     overflow: hidden; /* Remove overflow hidden to allow scrolling */
   }
@@ -172,7 +172,7 @@
 </div>
 <div class="canvas-container">
   <div>
-    <img src="../images/Metamorphabet_antlers_animation.gif" alt="GIF Image" width="600px">
+    <img src="../images/U.gif" alt="GIF Image" width="600px">
   </div>
   <canvas id="canvas" width="500" height="540"></canvas> <!-- Change the width and height of the canvas -->
   <!-- Toggle button -->
@@ -222,24 +222,24 @@
 
 <script>
   function createCircleChart(percent, color, size, stroke) {
-    A_correct = localStorage.A_correct;
-    A_wrong = localStorage.A_wrong;
+    U_correct = localStorage.U_correct;
+    U_wrong = localStorage.U_wrong;
 
-    if (A_correct !== undefined || A_wrong !== undefined) {
-        if (A_correct === undefined) {
+    if (U_correct !== undefined || U_wrong !== undefined) {
+        if (U_correct === undefined) {
             percent = 0;
-        } else if (A_wrong === undefined) {
+        } else if (U_wrong === undefined) {
             percent = 100;
         } else {
-            var totalAnswers = parseInt(A_correct) + parseInt(A_wrong);
-            percent = (parseInt(A_correct) / totalAnswers) * 100;
+            var totalAnswers = parseInt(U_correct) + parseInt(U_wrong);
+            percent = (parseInt(U_correct) / totalAnswers) * 100;
         }
     } else {
         percent = 0;
     }
 
-    console.log(A_correct);
-    console.log(A_wrong);
+    console.log(U_correct);
+    console.log(U_wrong);
     console.log(percent);
 
     // round percent to 2 decimal points
@@ -272,12 +272,12 @@ for(let i=0;i<charts.length;i++) {
     const toggleButton = document.getElementById("imageToggle");
     const canvas = document.getElementById("canvas");
     const soundButton = document.getElementById("soundButton");
-    const audio = new Audio("../Audio/A.mp3"); // Replace with the path to your audio file
+    const audio = new Audio("../Audio/U.mp3"); // Replace with the path to your audio file
 
     toggleButton.addEventListener("change", function() {
       if (toggleButton.checked) {
         // Add background image
-        canvas.style.backgroundImage = "url('../images/A_trace.jpg')";
+        canvas.style.backgroundImage = "url('../images/U_trace.jpg')";
       } else {
         // Remove background image
         canvas.style.backgroundImage = "none";
@@ -545,18 +545,18 @@ for(let i=0;i<charts.length;i++) {
         if (err) {
             throw err;
         } else {
-            if (data && data[0] && data[0][0] === "A") {
-              if (localStorage.A_correct){
-                localStorage.A_correct = Number(localStorage.A_correct) + 1;
+            if (data && data[0] && data[0][0] === "U") {
+              if (localStorage.U_correct){
+                localStorage.U_correct = Number(localStorage.U_correct) + 1;
               } else {
-                localStorage.A_correct = 1;
+                localStorage.U_correct = 1;
               }
                 window.location.href = "correct.html";
             } else {
-              if (localStorage.A_wrong){
-                localStorage.A_wrong= Number(localStorage.A_wrong) +1
+              if (localStorage.U_wrong){
+                localStorage.U_wrong= Number(localStorage.U_wrong) +1
               } else{
-                localStorage.A_wrong = 1;
+                localStorage.U_wrong = 1;
               }
                 window.location.href = "wrong.html";
             }
