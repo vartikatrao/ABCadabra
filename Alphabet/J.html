@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>F</title>
+<title>J</title>
 <style>
+  
   body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #2a0033;
+    background-color: #280c41;
     position: relative; /* Add relative position to allow absolute positioning of the sound button */
-    overflow: hidden;
+    overflow: hidden; /* Remove overflow hidden to allow scrolling */
   }
   .header {
     text-align: center;
@@ -39,6 +40,11 @@
     width: 100px;
     padding: 20px;
     background-color: #f0f0f0;
+  }
+  #mkcharts{
+    position: absolute;
+    left:0; 
+    bottom: 0;
   }
   .tool {
     margin-bottom: 10px;
@@ -144,7 +150,7 @@
   .sound-button {
     position: absolute;
     bottom: 100px; /* Adjust vertical position as needed */
-    left: 650px;  /* Adjust horizontal position as needed */
+    left: 650px; /* Adjust horizontal position as needed */
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -156,6 +162,7 @@
 </style>
 </head>
 <body>
+
 <div class="header">
   <img src="../images/draw.png" alt="Heading Image" height="130%">
 </div>
@@ -165,7 +172,7 @@
 </div>
 <div class="canvas-container">
   <div>
-    <img src="../images/Metamorphabet_foot_animation.gif" alt="GIF Image" width="600px">
+    <img src="../images/Metamorphabet_juggle_animation.gif" alt="GIF Image" width="600px">
   </div>
   <canvas id="canvas" width="500" height="540"></canvas> <!-- Change the width and height of the canvas -->
   <!-- Toggle button -->
@@ -215,24 +222,24 @@
 
 <script>
   function createCircleChart(percent, color, size, stroke) {
-    F_correct = localStorage.F_correct;
-    F_wrong = localStorage.F_wrong;
+    J_correct = localStorage.J_correct;
+    J_wrong = localStorage.J_wrong;
 
-    if (F_correct !== undefined || F_wrong !== undefined) {
-        if (F_correct === undefined) {
+    if (J_correct !== undefined || J_wrong !== undefined) {
+        if (J_correct === undefined) {
             percent = 0;
-        } else if (F_wrong === undefined) {
+        } else if (J_wrong === undefined) {
             percent = 100;
         } else {
-            var totalAnswers = parseInt(F_correct) + parseInt(F_wrong);
-            percent = (parseInt(F_correct) / totalAnswers) * 100;
+            var totalAnswers = parseInt(J_correct) + parseInt(J_wrong);
+            percent = (parseInt(J_correct) / totalAnswers) * 100;
         }
     } else {
         percent = 0;
     }
 
-    console.log(F_correct);
-    console.log(F_wrong);
+    console.log(J_correct);
+    console.log(J_wrong);
     console.log(percent);
 
     // round percent to 2 decimal points
@@ -260,16 +267,17 @@ for(let i=0;i<charts.length;i++) {
     let stroke = ('stroke' in chart.dataset) ? chart.dataset.stroke : "1";
     charts[i].innerHTML = createCircleChart(percent, color, size, stroke);
 }
+
   document.addEventListener("DOMContentLoaded", function() {
     const toggleButton = document.getElementById("imageToggle");
     const canvas = document.getElementById("canvas");
     const soundButton = document.getElementById("soundButton");
-    const audio = new Audio("../Audio/F.mp3"); // Replace with the path to your audio file
+    const audio = new Audio("../Audio/J.mp3"); // Replace with the path to your audio file
 
     toggleButton.addEventListener("change", function() {
       if (toggleButton.checked) {
         // Add background image
-        canvas.style.backgroundImage = "url('../images/F_trace.jpg')";
+        canvas.style.backgroundImage = "url('../images/J_trace.jpg')";
       } else {
         // Remove background image
         canvas.style.backgroundImage = "none";
@@ -537,18 +545,18 @@ for(let i=0;i<charts.length;i++) {
         if (err) {
             throw err;
         } else {
-            if (data && data[0] && data[0][0] === "F") {
-              if (localStorage.F_correct){
-                localStorage.F_correct = Number(localStorage.F_correct) + 1;
+            if (data && data[0] && data[0][0] === "J") {
+              if (localStorage.J_correct){
+                localStorage.J_correct = Number(localStorage.J_correct) + 1;
               } else {
-                localStorage.F_correct = 1;
+                localStorage.J_correct = 1;
               }
                 window.location.href = "correct.html";
             } else {
-              if (localStorage.F_wrong){
-                localStorage.F_wrong= Number(localStorage.F_wrong) +1
+              if (localStorage.J_wrong){
+                localStorage.J_wrong= Number(localStorage.J_wrong) +1
               } else{
-                localStorage.F_wrong = 1;
+                localStorage.J_wrong = 1;
               }
                 window.location.href = "wrong.html";
             }

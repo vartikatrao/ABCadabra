@@ -11,6 +11,7 @@
     font-family: Arial, sans-serif;
     background-color: #2a0033;
     position: relative; /* Add relative position to allow absolute positioning of the sound button */
+    overflow: hidden;
   }
   .header {
     text-align: center;
@@ -131,17 +132,19 @@
   /* Style for "Trace" text */
   .trace-text {
     position: absolute;
-    top: 75px; /* Adjust as needed */
+    top: 78px; /* Adjust as needed */
     right: 100px; /* Adjust as needed */
     color: white;
-    font-size: 30px;
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
   }
 
   /* Style for sound button */
   .sound-button {
     position: absolute;
-    bottom: 200px; /* Adjust vertical position as needed */
-    right: 130px; /* Adjust horizontal position as needed */
+    bottom: 100px; /* Adjust vertical position as needed */
+    left: 650px; /* Adjust horizontal position as needed */
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -186,6 +189,24 @@
       Submit
     </div>
   </div>
+  <!-- Circle chart -->
+  <h2 class="mkChart_heading">Letter score</h2>
+  <div class="mkCharts" data-percent="45" data-color="#90EE90" data-stroke="3"></div>
+
+  <style>
+    .mkChart_heading{
+      color: #f0f0f0;
+      position: fixed;
+      bottom: 230px;
+      right: 80px;
+      font-family:'Courier New', Courier, monospace;
+    }
+    .mkCharts {
+      position: fixed;
+      bottom: 140px;
+      right: 100px;
+    }
+  </style>
   <!-- Sound button -->
   <button class="sound-button" id="soundButton">
     <img src="../images/sound.png" alt="Sound" />
@@ -193,6 +214,52 @@
 </div>
 
 <script>
+  function createCircleChart(percent, color, size, stroke) {
+    P_correct = localStorage.P_correct;
+    P_wrong = localStorage.P_wrong;
+
+    if (P_correct !== undefined || P_wrong !== undefined) {
+        if (P_correct === undefined) {
+            percent = 0;
+        } else if (P_wrong === undefined) {
+            percent = 100;
+        } else {
+            var totalAnswers = parseInt(P_correct) + parseInt(P_wrong);
+            percent = (parseInt(P_correct) / totalAnswers) * 100;
+        }
+    } else {
+        percent = 0;
+    }
+
+    console.log(P_correct);
+    console.log(P_wrong);
+    console.log(percent);
+
+    // round percent to 2 decimal points
+    percent = Math.round(percent * 100) / 100;
+    let svg = `<svg class="mkc_circle-chart" viewbox="0 0 36 36" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+        <path class="mkc_circle-bg" stroke="#eeeeee" stroke-width="${stroke * 0.5}" fill="none" d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"/>
+        <path class="mkc_circle" stroke="${color}" stroke-width="${stroke}" stroke-dasharray="${percent},100" stroke-linecap="round" fill="none"
+            d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+        <text class="mkc_info" x="50%" y="50%" alignment-baseline="central" text-anchor="middle" font-size="8" fill="#eee">${percent}%</text>
+    </svg>`;
+    return svg;
+}
+
+let charts = document.getElementsByClassName('mkCharts');
+
+for(let i=0;i<charts.length;i++) {
+    let chart = charts[i];
+    let percent = chart.dataset.percent;
+    let color = ('color' in chart.dataset) ? chart.dataset.color : "#2F4F4F";
+    let size = ('size' in chart.dataset) ? chart.dataset.size : "100";
+    let stroke = ('stroke' in chart.dataset) ? chart.dataset.stroke : "1";
+    charts[i].innerHTML = createCircleChart(percent, color, size, stroke);
+}
   document.addEventListener("DOMContentLoaded", function() {
     const toggleButton = document.getElementById("imageToggle");
     const canvas = document.getElementById("canvas");
@@ -471,9 +538,18 @@
             throw err;
         } else {
             if (data && data[0] && data[0][0] === "P") {
-                
+              if (localStorage.P_correct){
+                localStorage.P_correct = Number(localStorage.P_correct) + 1;
+              } else {
+                localStorage.P_correct = 1;
+              }
                 window.location.href = "correct.html";
             } else {
+              if (localStorage.P_wrong){
+                localStorage.P_wrong= Number(localStorage.P_wrong) +1
+              } else{
+                localStorage.P_wrong = 1;
+              }
                 window.location.href = "wrong.html";
             }
         }
