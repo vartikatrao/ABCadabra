@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        #chart {
+            width: 100%;
+            height: 400px;
+        }
+        .ribbon-badge {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px auto;
+            font-size: 60px;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 120px;
+        }
+        .home-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+       <a href="index.html" class="home-button"><img src="../images/home_white.png" alt="Home" width="50"></a>
+     
+    <h1 style="text-align: center; font-family:'Courier New', Courier, monospace; font-size:60px;">Analytics Page</h1>
+    <div id="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+    <h1 style="text-align: center; font-family:'Courier New', Courier, monospace; font-size:40px;">Badges Earned</h1>
+    <div id="badges">
+        <!-- Badges will be dynamically added here -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Retrieve letter stats from localStorage
+        const letterStats = {};
+        for (let i = 65; i <= 90; i++) {
+            const letter = String.fromCharCode(i);
+            const correctKey = letter + '_correct';
+            const wrongKey = letter + '_wrong';
+            const correctCount = parseInt(localStorage.getItem(correctKey)) || 0;
+            const wrongCount = parseInt(localStorage.getItem(wrongKey)) || 0;
+            letterStats[letter] = { correct: correctCount, wrong: wrongCount };
+        }
+
+        // Find the top 5 most incorrectly written letters
+        const sortedLetters = Object.keys(letterStats).sort((a, b) => {
+            return letterStats[b].wrong - letterStats[a].wrong;
+        });
+        const top5Letters = sortedLetters.slice(0, 5);
+        
+        // Prepare data for chart
+        const chartData = {
+            labels: top5Letters,
+            datasets: [{
+                label: 'Wrong Count',
+                data: top5Letters.map(letter => letterStats[letter].wrong),
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Draw chart
+        const ctx = document.getElementById('chart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Add badges for letters with correct count > 10
+        const badgesContainer = document.getElementById('badges');
+        Object.keys(letterStats).forEach(letter => {
+            if (letterStats[letter].correct > 10) {
+                const badge = document.createElement('div');
+                badge.classList.add('ribbon-badge');
+                badge.textContent = letter;
+                badgesContainer.appendChild(badge);
+            }
+        });
+    </script>
+</body>
+</html>

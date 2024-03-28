@@ -10,53 +10,81 @@
     padding: 0;
     height: 100%;
     overflow: hidden;
+    font-family: Arial, sans-serif;
   }
   .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100%;
-    background-color: #031f2f;
+    background: linear-gradient(to bottom, #2980B9, #6DD5FA);
+    padding-top: 50px; /* Added padding to move content down */
   }
   .image {
-    margin-top: 100px;
-    max-width: 60%;
+    margin-top: 20px; /* Increased margin between image and buttons */
+    max-width: 80%;
     height: auto;
   }
   .button-container {
-    margin-top: 20px;
-    margin-left: 40px;
+    margin-top: 20px; /* Increased margin between image and buttons */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
   }
   .button-row {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 600px;
   }
   .button {
-    margin: 100px 0px;
+    margin: 0 20px;
     cursor: pointer;
+    flex: 1;
+  }
+  .button button {
+    width: 300px;
+    height: 60px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    color: black;
+    text-transform: uppercase; /* Capitalize button texts */
+    font-family: 'Courier New', Courier, monospace;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+
+  }
+  .button button:hover {
+    background-color: #2980B9;
+    color: #fff;
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <img src="images/title.png" alt="Your Image" class="image">
+  <img src="images/title.png" alt="Your Image" class="image" style="width: 200%; height: auto;">
   <div class="button-container">
-    <div class="button-row">
-      <div class="button">
-        <img src="images/play_random.png" alt="Button 1" id="button1" width="80%">
-      </div>
-      <div class="button">
-        <img src="images/choose_letter.png" alt="Button 2" id="button2" width="75%">
+      <div class="button-row">
+        <div class="button">
+          <button id="button1">Play Random</button>
+        </div>
+        <div class="button">
+          <button id="button2">Choose Letter</button>
+        </div>
+        <div class="button">
+          <button id="button3">Analytics</button>
+        </div>
       </div>
     </div>
-  </div>
 </div>
+<audio src="Audio/abc_song.mp3" autoplay loop></audio>
 <script>
   // Array containing file paths of HTML pages
   var pages = [
@@ -65,8 +93,6 @@
     'Alphabet/P.html',
     'Alphabet/R.html', 
     'Alphabet/J.html',
-    'Alphabet/O.html',
-    'Alphabet/U.html',
     'Alphabet/L.html',
     // Add more pages here as needed
   ];
@@ -103,6 +129,11 @@
   button2.addEventListener("click", function() {
     // Perform the desired action when the button is clicked
     window.location.href = "choose_letter.html";
+  });
+
+  button3.addEventListener("click", function() {
+    // Perform the desired action when the button is clicked
+    window.location.href = "analytics.html";
   });
   
 </script>
